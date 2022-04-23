@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>General Git Commands &mdash; Documentation  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">General Git Commands</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#simple-commands">Simple Commands</a></li>
+<li><a class="reference internal" href="#ssh-interlude">SSH INTERLUDE</a></li>
+<li><a class="reference internal" href="#fork-on-github">Fork on Github</a></li>
+<li><a class="reference internal" href="#working-with-submodules">Working with submodules</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>General Git Commands</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/git_commands.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="general-git-commands">
+<h1>General Git Commands<a class="headerlink" href="#general-git-commands" title="Permalink to this headline"></a></h1>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline"></a></h2>
+<p>Setting user name and email:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">git config --global user.name <span class="s2">&quot;name</span></span>
+<span class="prompt1"></span>
+<span class="prompt1">git config --global user.email <span class="s2">&quot;email&quot;</span></span>
+</pre></div></div></section>
+<section id="simple-commands">
+<h2>Simple Commands<a class="headerlink" href="#simple-commands" title="Permalink to this headline"></a></h2>
+<p>Initialization of a direction:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git init</span>
+</pre></div></div><p>Simple commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add</span>
+<span class="prompt1"></span>
+<span class="prompt1">git commit</span>
+<span class="prompt1"></span>
+<span class="prompt1">git status</span>
+<span class="prompt1"></span>
+<span class="prompt1">git log</span>
+<span class="prompt1"></span>
+<span class="prompt1">git branch</span>
+<span class="prompt1"></span>
+<span class="prompt1">git remote -v</span>
+</pre></div></div><p>Create a new branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout -b <span class="s2">&quot;branch name&quot;</span></span>
+</pre></div></div><p>Switch between existing branch</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout <span class="s2">&quot;branch name&quot;</span></span>
+</pre></div></div><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Head is he most recent change on the branch</p>
+</div>
+<p>Make changes on different branch other than main, then merge branch to the current branch.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git merge <span class="s2">&quot;other-branch&quot;</span></span>
+</pre></div></div><p>Checkout to previous commit:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout <span class="s2">&quot;hash&quot;</span>          <span class="c1"># puts in detached head</span></span>
+<span class="prompt1"></span>
+<span class="prompt1">git checkout -b tmp          <span class="c1"># saves commit in tmp branch</span></span>
+<span class="prompt1"></span>
+<span class="prompt1">git checkout main            <span class="c1"># incorporates to main branch</span></span>
+<span class="prompt1"></span>
+<span class="prompt1">git merge tmp                <span class="c1"># merge changes from tmp to main</span></span>
+</pre></div></div></section>
+<section id="ssh-interlude">
+<h2>SSH INTERLUDE<a class="headerlink" href="#ssh-interlude" title="Permalink to this headline"></a></h2>
+<p>Generate SSH keys:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ssh-keygen -t ed25519</span>
+<span class="prompt1"></span>
+<span class="prompt1">ls ~/.ssh</span>
+</pre></div></div><p>Then add ssh keys by copy paste contents from id_ed25519.pub</p>
+<p>Test:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">ssh -T git@github.com</span>
+</pre></div></div></section>
+<section id="fork-on-github">
+<h2>Fork on Github<a class="headerlink" href="#fork-on-github" title="Permalink to this headline"></a></h2>
+<ol class="arabic">
+<li><p>Clone the original repository</p></li>
+<li><p>Go to Github repository and click fork</p></li>
+<li><p>Click, copy and paste URL in the forked repository</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git remote add myfork Forked-URL</span>
+</pre></div></div></li>
+<li><p>Click Pull-request on forked webpage and follow instructions</p></li>
+</ol>
+</section>
+<section id="working-with-submodules">
+<h2>Working with submodules<a class="headerlink" href="#working-with-submodules" title="Permalink to this headline"></a></h2>
+<p>Add submodules to the mother directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git submodule add URL</span>
+<span class="prompt1"></span>
+<span class="prompt1">git submodule init</span>
+<span class="prompt1"></span>
+<span class="prompt1">git submodule update</span>
+<span class="prompt1"></span>
+<span class="prompt1">git commit -m <span class="s1">&#39;msg&#39;</span></span>
+<span class="prompt1"></span>
+<span class="prompt1">git push --recurse-submodules<span class="o">=</span>on-demand</span>
+</pre></div></div><p>Cloning submodules and cloning</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone URL</span>
+<span class="prompt1"></span>
+<span class="prompt1">git submodule update --init --recursive</span>
+</pre></div></div><p>Keep update of the file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git pull --recurse-submodules</span>
+</pre></div></div></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Zhi Chen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
