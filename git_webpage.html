@@ -24,7 +24,9 @@
         <script src="_static/copybutton.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Makefiles" href="makefile.html" />
+    <link rel="prev" title="General Git Commands" href="git_commands.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,8 +45,20 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Github</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="git_commands.html">General Git Commands</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Github Webpage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-gh-pages">Creating gh-pages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#doxygen-configuration">Doxygen Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx">SPHINX</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx-with-doxygen">Sphinx with Doxygen</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Automating Compiling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="makefile.html">Makefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gh_unit_test.html">Github Action Unit Tests</a></li>
 </ul>
 
         </div>
@@ -163,13 +177,130 @@ span.prompt1:before {
 <span class="prompt1">rm make.bat</span>
 </pre></div></div><p>There are two important files, <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> and <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> inside <code class="docutils literal notranslate"><span class="pre">source/</span></code> directory.</p>
 <p>Configure conf.py with a sample template below:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">conf.py</span></code></span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configuration file for the Sphinx documentation builder.</span>
+<span class="c1">#</span>
+<span class="c1"># This file only contains a selection of the most common options. For a full</span>
+<span class="c1"># list see the documentation:</span>
+<span class="c1"># https://www.sphinx-doc.org/en/master/usage/configuration.html</span>
+
+<span class="c1"># -- Path setup --------------------------------------------------------------</span>
+
+<span class="c1"># If extensions (or modules to document with autodoc) are in another directory,</span>
+<span class="c1"># add these directories to sys.path here. If the directory is relative to the</span>
+<span class="c1"># documentation root, use os.path.abspath to make it absolute, like shown here.</span>
+<span class="c1">#</span>
+<span class="c1"># import os</span>
+<span class="c1"># import sys</span>
+<span class="c1"># sys.path.insert(0, os.path.abspath(&#39;.&#39;))</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;cd ..; doxygen&quot;</span><span class="p">,</span> <span class="n">shell</span> <span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># -- Project information -----------------------------------------------------</span>
+
+<span class="n">project</span> <span class="o">=</span> <span class="s1">&#39;Documentation&#39;</span>
+<span class="n">copyright</span> <span class="o">=</span> <span class="s1">&#39;2022, Zhi Chen&#39;</span>
+<span class="n">author</span> <span class="o">=</span> <span class="s1">&#39;Zhi Chen&#39;</span>
+
+
+<span class="c1"># -- General configuration ---------------------------------------------------</span>
+
+<span class="c1"># Add any Sphinx extension module names here, as strings. They can be</span>
+<span class="c1"># extensions coming with Sphinx (named &#39;sphinx.ext.*&#39;) or your custom</span>
+<span class="c1"># ones.</span>
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;sphinx.ext.autodoc&quot;</span> <span class="p">,</span>
+    <span class="s2">&quot;breathe&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinx.ext.mathjax&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinx.ext.viewcode&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinx.ext.graphviz&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx.ext.autosectionlabel&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinx-prompt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinx_copybutton&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinx_panels&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Add any paths that contain templates here, relative to this directory.</span>
+<span class="n">templates_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_templates&#39;</span><span class="p">]</span>
+
+<span class="c1"># List of patterns, relative to source directory, that match files and</span>
+<span class="c1"># directories to ignore when looking for source files.</span>
+<span class="c1"># This pattern also affects html_static_path and html_extra_path.</span>
+<span class="n">exclude_patterns</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+<span class="c1"># -- Options for HTML output -------------------------------------------------</span>
+
+<span class="c1"># The theme to use for HTML and HTML Help pages.  See the documentation for</span>
+<span class="c1"># a list of builtin themes.</span>
+<span class="c1">#</span>
+<span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;sphinx_rtd_theme&#39;</span>
+
+<span class="c1"># Add any paths that contain custom static files (such as style sheets) here,</span>
+<span class="c1"># relative to this directory. They are copied after the builtin static files,</span>
+<span class="c1"># so a file named &quot;default.css&quot; will overwrite the builtin &quot;default.css&quot;.</span>
+<span class="n">html_static_path</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_static&#39;</span><span class="p">]</span>
+
+<span class="c1"># breathe_projects = {&quot;advection&quot;: &quot;../doxy_files/xml&quot; }</span>
+<span class="c1"># breathe_default_project = &quot;advection&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>Change yml file from building Doxygen to building sphinx.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Sphinx</span><span class="w"></span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">       </span><span class="no">cd docs</span><span class="w"></span>
+<span class="w">       </span><span class="no">make html</span><span class="w"></span>
+<span class="w">       </span><span class="no">cd ..</span><span class="w"></span>
+<span class="w">       </span><span class="no">mkdir -p out</span><span class="w"></span>
+<span class="w">       </span><span class="no">mv docs/build/html/* out/</span><span class="w"></span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span><span class="w"></span>
+<span class="w">    </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./out</span><span class="w"></span>
+<span class="w">    </span><span class="nt">keep_files</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="sphinx-with-doxygen">
+<h2>Sphinx with Doxygen<a class="headerlink" href="#sphinx-with-doxygen" title="Permalink to this headline"></a></h2>
+<p>Changing configurations in <cite>Doxyfile</cite>:
+1. <code class="docutils literal notranslate"><span class="pre">OUTPUT_DIRECTORY</span> <span class="pre">=</span> <span class="pre">doxy_files</span></code>
+2. <code class="docutils literal notranslate"><span class="pre">INPUT</span> <span class="pre">=</span> <span class="pre">&quot;input</span> <span class="pre">directory&quot;</span>&#160;&#160; <span class="pre">#where</span> <span class="pre">c++</span> <span class="pre">files</span> <span class="pre">are</span> <span class="pre">located</span></code>
+3. Create a <cite>doxygen_files.rst</cite> in <cite>source/</cite> with the following:</p>
+<blockquote>
+<div><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Doxygen Files</span>
+<span class="gh">==============</span>
+
+<span class="p">..</span> <span class="ow">doxygenindex</span><span class="p">::</span>
+   <span class="nc">:project:</span> project_name that matches inside conf.py
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="4">
+<li><p>Update <cite>index.rst</cite>:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="nc">:maxdepth:</span> 1
+<span class="nc">:caption:</span> API
+
+doxygen_files    #Name match doygen_files.rst
+</pre></div>
+</div>
+</li>
+</ol>
 </section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="git_commands.html" class="btn btn-neutral float-left" title="General Git Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="makefile.html" class="btn btn-neutral float-right" title="Makefiles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

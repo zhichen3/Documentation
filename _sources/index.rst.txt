@@ -11,9 +11,16 @@ Documentation!
    :caption: Github
 
    git_commands
+   git_webpage
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Automating Compiling
 
+   makefile
+   gh_unit_test
 
+   
 Indices and tables
 ==================
 

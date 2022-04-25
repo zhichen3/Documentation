@@ -109,7 +109,50 @@ There are two important files, ``conf.py`` and ``index.rst`` inside ``source/`` 
 
 Configure conf.py with a sample template below:
 
-.. literalinclude:: ../conf.py
-   :language: c++
+.. literalinclude:: ./conf.py
+   :language: python
    :caption: ``conf.py``
 
+Change yml file from building Doxygen to building sphinx.
+
+.. code:: yaml
+
+   - name: Build Sphinx
+     run: |
+          cd docs
+          make html
+          cd ..
+          mkdir -p out
+          mv docs/build/html/* out/
+
+   - name: Deploy
+     uses: peaceiris/actions-gh-pages@v3
+     with:
+       github_token: ${{ secrets.GITHUB_TOKEN }}
+       publish_dir: ./out
+       keep_files: true
+
+Sphinx with Doxygen
+====================
+
+Changing configurations in `Doxyfile`:
+1. ``OUTPUT_DIRECTORY = doxy_files``
+2. ``INPUT = "input directory"   #where c++ files are located``
+3. Create a `doxygen_files.rst` in `source/` with the following:
+
+   .. code:: rst
+
+      Doxygen Files
+      ==============
+
+      .. doxygenindex::
+	 :project: project_name that matches inside conf.py
+
+4. Update `index.rst`:
+
+   .. code:: rst
+
+      :maxdepth: 1
+      :caption: API
+
+      doxygen_files    #Name match doygen_files.rst
