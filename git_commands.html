@@ -49,6 +49,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">General Git Commands</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#simple-commands">Simple Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-pull-with-local-changes">Git pull with local changes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ssh-interlude">SSH INTERLUDE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fork-on-github">Fork on Github</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#working-with-submodules">Working with submodules</a></li>
@@ -111,6 +112,8 @@ span.prompt1:before {
 <span class="prompt1">git remote -v</span>
 </pre></div></div><p>Create a new branch:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout -b <span class="s2">&quot;branch name&quot;</span></span>
+</pre></div></div><p>In order to push to the non default branch, i.e., <code class="docutils literal notranslate"><span class="pre">main</span></code>, do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git push origin branch-name</span>
 </pre></div></div><p>Switch between existing branch</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout <span class="s2">&quot;branch name&quot;</span></span>
 </pre></div></div><div class="admonition tip">
@@ -124,6 +127,13 @@ span.prompt1:before {
 <span class="prompt1">git checkout -b tmp          <span class="c1"># saves commit in tmp branch</span></span>
 <span class="prompt1">git checkout main            <span class="c1"># incorporates to main branch</span></span>
 <span class="prompt1">git merge tmp                <span class="c1"># merge changes from tmp to main</span></span>
+</pre></div></div></section>
+<section id="git-pull-with-local-changes">
+<h2>Git pull with local changes<a class="headerlink" href="#git-pull-with-local-changes" title="Permalink to this headline"></a></h2>
+<p>If have local changes, one must either commit the files or stash them.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git stash</span>
+<span class="prompt1">git pull</span>
+<span class="prompt1">git stash pop</span>
 </pre></div></div></section>
 <section id="ssh-interlude">
 <h2>SSH INTERLUDE<a class="headerlink" href="#ssh-interlude" title="Permalink to this headline"></a></h2>

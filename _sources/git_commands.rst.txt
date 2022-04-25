@@ -38,6 +38,12 @@ Create a new branch:
 
    git checkout -b "branch name"
 
+In order to push to the non default branch, i.e., ``main``, do:
+
+.. prompt:: bash
+
+   git push origin branch-name
+   
 Switch between existing branch
 
 .. prompt:: bash
@@ -63,6 +69,18 @@ Checkout to previous commit:
    git checkout main            # incorporates to main branch
    git merge tmp                # merge changes from tmp to main
 
+
+Git pull with local changes
+==============================
+
+If have local changes, one must either commit the files or stash them.
+
+.. prompt:: bash
+
+   git stash
+   git pull
+   git stash pop
+   
 
 SSH INTERLUDE
 ==============
