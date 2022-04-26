@@ -20,6 +20,13 @@ Documentation!
    makefile
    gh_unit_test
 
+
+.. toctree::
+   :mathdepth: 1
+   :caption: Python
+
+   venv
+   py_packaging
    
 Indices and tables
 ==================
