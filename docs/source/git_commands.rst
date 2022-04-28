@@ -36,8 +36,20 @@ Create a new branch:
 
 .. prompt:: bash
 
-   git checkout -b "branch name"
+   git checkout -b <branch name>
 
+Delete a branch:
+
+.. prompt:: bash
+
+   git branch -d <branch-name>
+
+Delete a branch by force:
+
+.. prompt:: bash
+
+   git branch -D <branch-name>
+   
 In order to push to the non default branch, i.e., ``main``, do:
 
 .. prompt:: bash
