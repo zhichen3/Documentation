@@ -111,7 +111,11 @@ span.prompt1:before {
 <span class="prompt1">git branch</span>
 <span class="prompt1">git remote -v</span>
 </pre></div></div><p>Create a new branch:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout -b <span class="s2">&quot;branch name&quot;</span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git checkout -b &lt;branch name&gt;</span>
+</pre></div></div><p>Delete a branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git branch -d &lt;branch-name&gt;</span>
+</pre></div></div><p>Delete a branch by force:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git branch -D &lt;branch-name&gt;</span>
 </pre></div></div><p>In order to push to the non default branch, i.e., <code class="docutils literal notranslate"><span class="pre">main</span></code>, do:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git push origin branch-name</span>
 </pre></div></div><p>Switch between existing branch</p>
