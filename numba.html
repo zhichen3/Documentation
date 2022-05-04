@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Python Virtual Environment &mdash; Documentation  documentation</title>
+  <title>Numba &mdash; Documentation  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Packaging" href="py_packaging.html" />
-    <link rel="prev" title="Github Action Unit Tests" href="gh_unit_test.html" /> 
+    <link rel="next" title="Parallelization" href="parallelization.html" />
+    <link rel="prev" title="Unit Tests" href="pytest.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,10 +56,10 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Python</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Python Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="venv.html">Python Virtual Environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="py_packaging.html">Packaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pytest.html">Unit Tests</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numba.html">Numba</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Numba</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">C++</span></p>
 <ul>
@@ -80,9 +80,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Python Virtual Environment</li>
+      <li>Numba</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/venv.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/numba.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -90,26 +90,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="python-virtual-environment">
-<h1>Python Virtual Environment<a class="headerlink" href="#python-virtual-environment" title="Permalink to this headline"></a></h1>
-<p>Create a python virtual environment:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1">python -m venv environment-name</span>
-</pre></div></div><p>To activate environment:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">source</span> &lt;environment-name&gt;/bin/activate</span>
-</pre></div></div><p>To deactivate environment:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">deactivate</span>
-</pre></div></div></section>
+  <section id="numba">
+<h1>Numba<a class="headerlink" href="#numba" title="Permalink to this headline"></a></h1>
+<p>It puts some decorators on top of the <strong>python function</strong> and makes it a lot faster.</p>
+<p>Numba has few decorators:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;jit</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;njit</span></code>, it is the go-to decorator which is also the alias for <code class="docutils literal notranslate"><span class="pre">&#64;jit(nopython=True)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;vectorize</span></code>: produces NumPy <code class="docutils literal notranslate"><span class="pre">ufunc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;guvectorize</span></code>: produces general NumPy <code class="docutils literal notranslate"><span class="pre">ufunc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;stencil</span></code>: declare a function as a kernel for stencil like operations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;jitclass</span></code>: for jit classes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;cfun</span></code>: declare a function for use as a native call back (from C/C++)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&#64;overload</span></code>: register your own implementation of a function for use in nopython mode, e.g. <code class="docutils literal notranslate"><span class="pre">&#64;overload(scipy.special.j0)</span></code></p></li>
+</ul>
+<p>Some extra options available in some decorators:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">parallel</span> <span class="pre">=</span> <span class="pre">True</span></code>: enables the automatic parallelization of the function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fastmath</span> <span class="pre">=</span> <span class="pre">True</span></code>: enable fast-math behavior for the function.</p></li>
+</ul>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="gh_unit_test.html" class="btn btn-neutral float-left" title="Github Action Unit Tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="py_packaging.html" class="btn btn-neutral float-right" title="Packaging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pytest.html" class="btn btn-neutral float-left" title="Unit Tests" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parallelization.html" class="btn btn-neutral float-right" title="Parallelization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

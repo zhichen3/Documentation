@@ -132,6 +132,13 @@ Change yml file from building Doxygen to building sphinx.
        publish_dir: ./out
        keep_files: true
 
+To test things locally:
+
+.. prompt:: bash
+
+   make html
+   google-chrome build/html/index.html
+
 Sphinx with Doxygen
 ====================
 

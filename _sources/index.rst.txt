@@ -22,12 +22,21 @@ Documentation!
 
 
 .. toctree::
-   :mathdepth: 1
+   :maxdepth: 1
    :caption: Python
 
    venv
    py_packaging
+   pytest
+   numba
    
+.. toctree::
+   :maxdepth: 1
+   :caption: C++
+
+   parallelization
+
+	       
 Indices and tables
 ==================
 

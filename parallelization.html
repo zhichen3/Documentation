@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parallelization &mdash; Documentation  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Numba" href="numba.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Github</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="git_commands.html">General Git Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_webpage.html">Github Webpage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Automating Compiling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="makefile.html">Makefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gh_unit_test.html">Github Action Unit Tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="venv.html">Python Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_packaging.html">Packaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pytest.html">Unit Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba.html">Numba</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">C++</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#openmp">OpenMP</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Parallelization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/parallelization.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="parallelization">
+<h1>Parallelization<a class="headerlink" href="#parallelization" title="Permalink to this headline"></a></h1>
+<p>Two major types of parallel programming:</p>
+<ul class="simple">
+<li><p>Shared memory: Running on a simple computer with multiple CPU cores/threas.
+* All cores/threads have access to the same memory. One would need to spawn multiple threads and operate simultaneously.
+* All threads/cores work on their portion of the data and merge to the same memory at last.
+* One uses <strong>OpenMP</strong> for such case.</p></li>
+<li><p>Distributed memory: Running on a collection of computers connected by a high-speed networl.
+* Each task cannot directly see the memory of th other task
+* Exchanging information from one machine to the other requires high-speed network
+* One use <strong>MPI</strong> for such case.</p></li>
+</ul>
+<section id="openmp">
+<h2>OpenMP<a class="headerlink" href="#openmp" title="Permalink to this headline"></a></h2>
+<p>To use <strong>OpenMP</strong>, include the header file <code class="docutils literal notranslate"><span class="pre">&lt;omp.h&gt;</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;omp.h&gt;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>Compile code that uses <strong>OpenMP</strong> with flag <code class="docutils literal notranslate"><span class="pre">-fopenmp</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">g++ -fopenmp -o hello hello.cpp</span>
+</pre></div></div><p>To initialize OpenMP directive use <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span></code>.</p>
+<p>Some useful directives:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">parallel</span> <span class="pre">[clause[,]clause]...]</span></code>: creates a section for parallelization. Sections can have <code class="docutils literal notranslate"><span class="pre">{}</span></code> to indicate, but not a must for easy expressions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">for</span> <span class="pre">[clause[,]clause]...]</span></code>: declared inside a <code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">parallel</span></code> section, used on top of the for-loop</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">critical</span></code>: forces the section to execute to single thread at a time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">parallel</span> <span class="pre">for</span> <span class="pre">[clause[,]clause]...]</span></code>: used for a quick single for-loop</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">single</span> <span class="pre">[clause[,]clause]...]</span></code>: forces the section to perform by only 1 of the thread.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#pragma</span> <span class="pre">omp</span> <span class="pre">taskwait</span></code>: specifies a wait on the completion of child tasks of the current task.</p></li>
+</ul>
+<p>Some useful clauses:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">shared(list)</span></code>: declares one or more times to be shared by tasks generaed by a <cite>parallel</cite> or <cite>task</cite></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">private(list)</span></code>: declares one or more list items to be private to a task</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">firprivate(list)</span></code>: declares one or more list items to be private to a task, and initializes each of them with the value that the corresponding original item has when the construct is encountered.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lastprivate(list)</span></code>: declares one or more list items to be rpivate to an implicit task, and causes the corresponding original item to be updated afer the endof the region.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reduction(operator:list)</span></code>: declares accumulation into the list items using the indicated <strong>associative</strong> operator. Accumulation occurs into a private copy for each list item which is then combined with the original item.</p>
+<ul>
+<li><p>Operators for Reduction: +, *, -, ^, |, &amp;, &amp;&amp;, ||, max, min.</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To access the number of threads used for OpenMP, it accesses the global environment <code class="docutils literal notranslate"><span class="pre">OMP_NUM_THREADS</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">export</span> <span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">4</span></span>
+</pre></div></div><p>To specify the current instance use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="m">4</span> ./exec</span>
+</pre></div></div></div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="numba.html" class="btn btn-neutral float-left" title="Numba" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Zhi Chen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
