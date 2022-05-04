@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit Tests &mdash; Documentation  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Numba" href="numba.html" />
+    <link rel="prev" title="Packaging" href="py_packaging.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Github</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="git_commands.html">General Git Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_webpage.html">Github Webpage</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Automating Compiling</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="makefile.html">Makefiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gh_unit_test.html">Github Action Unit Tests</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Python</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="venv.html">Python Virtual Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py_packaging.html">Packaging</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Unit Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pytest">pytest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-discovery">Test Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#class">class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="numba.html">Numba</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">C++</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="parallelization.html">Parallelization</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Unit Tests</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pytest.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="unit-tests">
+<h1>Unit Tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline"></a></h1>
+<section id="pytest">
+<h2>pytest<a class="headerlink" href="#pytest" title="Permalink to this headline"></a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">pytest</span></code> for creating unit test framework for python.</p>
+</section>
+<section id="test-discovery">
+<h2>Test Discovery<a class="headerlink" href="#test-discovery" title="Permalink to this headline"></a></h2>
+<p>Tests are automatically found for the following files:</p>
+<ul class="simple">
+<li><p>Unit test file should start or end with “test” :
+* test_example.py
+* example_test.py</p></li>
+<li><p>When testing in a class, class name should start with <code class="docutils literal notranslate"><span class="pre">Test</span></code> :
+* <code class="docutils literal notranslate"><span class="pre">TestExample</span></code>
+* This class should not have the constructor or <code class="docutils literal notranslate"><span class="pre">__init__()</span></code></p></li>
+</ul>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline"></a></h2>
+<p>Testing should make use of <code class="docutils literal notranslate"><span class="pre">assert</span></code> statement.</p>
+<p>An example of testing would be creating a file called <code class="docutils literal notranslate"><span class="pre">test_simple.py</span></code> and with the following content:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+       <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="n">b</span>
+
+<span class="k">def</span> <span class="nf">test_multiply</span><span class="p">():</span>
+       <span class="k">assert</span> <span class="n">multiply</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="o">==</span> <span class="mi">24</span>
+</pre></div>
+</div>
+<p>Then run the following command for running the test in the current directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">pytest -v                   <span class="c1">#v for verbose</span></span>
+</pre></div></div><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To always show stdout from <code class="docutils literal notranslate"><span class="pre">print</span></code> statements, include <code class="docutils literal notranslate"><span class="pre">-s</span></code> flag.</p>
+</div>
+</section>
+<section id="class">
+<h2>class<a class="headerlink" href="#class" title="Permalink to this headline"></a></h2>
+<p>Using a <code class="docutils literal notranslate"><span class="pre">class</span></code> for testing is usually more clear and concise.</p>
+<p><cite>pytest</cite> has the few methods for setting up a speciic data for test, <code class="docutils literal notranslate"><span class="pre">setup_method()</span></code> and <code class="docutils literal notranslate"><span class="pre">setup_class(cls)</span></code>  and methods to clean up data <code class="docutils literal notranslate"><span class="pre">teardown_method()</span></code> and <code class="docutils literal notranslate"><span class="pre">teardown_class(cls)</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TestClass</span><span class="p">:</span>
+
+       <span class="nd">@classmethod</span>
+       <span class="k">def</span> <span class="nf">set_upclass</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+           <span class="sd">&#39;&#39;&#39; this is run once for each class, before any tests &#39;&#39;&#39;</span>
+           <span class="k">pass</span>
+
+       <span class="nd">@classmethod</span>
+       <span class="k">def</span> <span class="nf">teardown_class</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+           <span class="sd">&#39;&#39;&#39; this is run once for each class, after all tests &#39;&#39;&#39;</span>
+           <span class="k">pass</span>
+
+       <span class="k">def</span> <span class="nf">setup_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+           <span class="sd">&#39;&#39;&#39; this is run before each of the test methods &#39;&#39;&#39;</span>
+           <span class="k">pass</span>
+
+       <span class="k">def</span> <span class="nf">teardown_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+           <span class="sd">&#39;&#39;&#39; this is run after each of the test methods &#39;&#39;&#39;</span>
+           <span class="k">pass</span>
+
+       <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+           <span class="sd">&#39;&#39;&#39; some tests &#39;&#39;&#39;</span>
+           <span class="k">pass</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="py_packaging.html" class="btn btn-neutral float-left" title="Packaging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="numba.html" class="btn btn-neutral float-right" title="Numba" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Zhi Chen.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
