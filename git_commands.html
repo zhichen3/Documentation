@@ -9,8 +9,8 @@
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" type="text/css" />
+      <link rel="stylesheet" href="_static/panels-bootstrap.5fd3999ee7762ccc51105388f4a9d115.css" type="text/css" />
       <link rel="stylesheet" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -178,7 +178,17 @@ span.prompt1:before {
 <span class="prompt1">git submodule update</span>
 <span class="prompt1">git commit -m <span class="s1">&#39;msg&#39;</span></span>
 <span class="prompt1">git push --recurse-submodules<span class="o">=</span>on-demand</span>
-</pre></div></div><p>Cloning submodules and cloning</p>
+</pre></div></div><p>Delete submodules:</p>
+<ul class="simple">
+<li><p>Delete relevant section form .gitmodules</p></li>
+<li><p>git add .gitmodules</p></li>
+<li><p>delete relevant sections from .git/config</p></li>
+<li><p>git rm –cached path_to_submodules</p></li>
+<li><p>rm -rf .git/modules/path_to_submodules</p></li>
+<li><p>git commit -m “removed submodule”</p></li>
+<li><p>rm -rf path_to_submodule</p></li>
+</ul>
+<p>Cloning submodules and cloning</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone URL</span>
 <span class="prompt1">git submodule update --init --recursive</span>
 </pre></div></div><p>Keep update of the file</p>
