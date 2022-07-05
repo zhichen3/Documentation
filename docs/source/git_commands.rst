@@ -141,6 +141,16 @@ Add submodules to the mother directory:
    git commit -m 'msg'
    git push --recurse-submodules=on-demand
 
+Delete submodules:
+
+* Delete relevant section form .gitmodules
+* git add .gitmodules
+* delete relevant sections from .git/config
+* git rm --cached path_to_submodules
+* rm -rf .git/modules/path_to_submodules
+* git commit -m "removed submodule"
+* rm -rf path_to_submodule
+
 Cloning submodules and cloning
 
 .. prompt:: bash
